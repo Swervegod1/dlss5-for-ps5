@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you reference this project, please cite it using the metadata below."
+title: "DLSS5 FOR PS5"
+type: software
+authors:
+  - family-names: "Swervegod1"
+version: 0.1.0
+date-released: 2026-09-12
+url: "https://github.com/Swervegod1/dlss5-for-ps5"
+repository-code: "https://github.com/Swervegod1/dlss5-for-ps5"
+abstract: >-
+  DLSS5 FOR PS5 is an unofficial PC-side PS5 Remote Play and capture-card
+  video enhancer using WebGL 2 spatial upscaling, sharpening, contrast
+  controls, and before/after comparison. It is not NVIDIA DLSS 5, Sony PSSR,
+  or native PS5 software.
+keywords:
+  - PS5 Remote Play
+  - PS5 video enhancer
+  - video upscaling
+  - capture card
+  - WebGL 2
+  - GLSL
+  - video sharpening
