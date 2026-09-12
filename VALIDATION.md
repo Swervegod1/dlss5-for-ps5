@@ -10,6 +10,7 @@ Prepared September 12, 2026. This is a source/prototype validation report, not a
 | Python syntax | Passed | Launcher and check scripts parse. |
 | HTML IDs and label references | Passed | No duplicate IDs or broken static control/label references found. |
 | Relative documentation links | Passed in final package check | Referenced local Markdown files exist. |
+| GitHub Actions source/launcher workflow | Passed on the initial publication commit | GitHub ran the source/launcher checks successfully; this is not a browser or PS5 test. |
 | Localhost launcher | Passed | Serves the exact HTML for `/` and `/index.html`; rejects unrelated paths, traversal-like paths, and unrecognized Host headers. |
 | GLSL ES 3 shader compilation/linking | Passed | The actual vertex and fragment shader text compiles and links in a standalone GLES context. |
 | Shader flat-color preservation | Passed | A constant RGB input remains constant within test tolerance. |
@@ -32,7 +33,7 @@ Optional Linux shader check, requiring a system EGL library and surfaceless GLES
 python tests/offline_shader_check.py
 ```
 
-GitHub Actions is configured to run the source/launcher checks when changes are pushed. Its hosted workflow has not run until this project is published and GitHub executes it.
+GitHub Actions passed on initial publication commit `f1344ba41583a2216395611f38a774c09767f6bb`: [verified workflow run](https://github.com/Swervegod1/dlss5-for-ps5/actions/runs/34693494275). Future commits trigger their own checks. All 15 published project files were verified against their local Git blob hashes after publication.
 
 ## Checks not completed
 
