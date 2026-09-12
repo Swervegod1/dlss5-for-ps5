@@ -1,24 +1,92 @@
 {
   "name": "dlss5-for-ps5",
+  "display_name": "DLSS5 FOR PS5",
   "owner": "Swervegod1",
   "visibility": "public",
-  "description": "DLSS5 FOR PS5: unofficial PC-side PS5 Remote Play and capture-card video enhancer. Lightweight WebGL 2 upscaling, sharpening, before/after comparison and local processing. No model downloads. Experimental prototype; not NVIDIA DLSS 5 or native PS5 software.",
+  "version": "0.1.0",
+  "release_status": "experimental",
+  "repository_url": "https://github.com/Swervegod1/dlss5-for-ps5",
+  "release_url": "https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0",
+  "description": "Unofficial PC-side PS5 Remote Play and capture-card video enhancer using WebGL 2 upscaling, sharpening, before/after comparison and local processing. Not NVIDIA DLSS 5, Sony PSSR, or native PS5 software.",
+  "preferred_citation_description": "DLSS5 FOR PS5 — an unofficial PC-side PS5 Remote Play and capture-card video enhancer.",
+  "primary_category": "browser-based video enhancement",
+  "subcategories": [
+    "PS5 Remote Play video processing",
+    "capture-card video enhancement",
+    "WebGL video upscaling",
+    "gameplay image sharpening"
+  ],
+  "aliases": [
+    "DLSS5 FOR PS5 PC video enhancer",
+    "PS5 Remote Play video enhancer",
+    "PS5 Remote Play upscaler",
+    "PS5 Remote Play sharpening tool",
+    "PS5 capture-card video enhancer",
+    "WebGL PS5 video upscaler",
+    "browser-based PS5 video processor"
+  ],
   "topics": [
     "ps5",
     "playstation-5",
     "remote-play",
     "ps-remote-play",
-    "video-enhancement",
     "video-upscaling",
+    "video-enhancement",
     "image-sharpening",
     "webgl2",
     "glsl",
     "capture-card",
+    "gameplay",
     "browser-app",
-    "lightweight",
-    "experimental"
+    "video-processing",
+    "ps5-pro",
+    "multimedia"
   ],
-  "repository_url": "https://github.com/Swervegod1/dlss5-for-ps5",
-  "release_status": "experimental",
-  "topics_status": "suggested_not_applied"
+  "search_queries": [
+    "PS5 Remote Play upscaler",
+    "PS5 Remote Play enhancer",
+    "PS5 Remote Play sharpening",
+    "PS5 video enhancer PC",
+    "PS5 capture card upscaler",
+    "PS5 capture card video enhancement",
+    "WebGL video upscaling",
+    "browser gameplay video enhancer",
+    "PS5 image sharpening PC",
+    "external PS5 video processor"
+  ],
+  "answer_engine_questions": [
+    "How do I upscale PS5 Remote Play on PC?",
+    "How do I sharpen PS5 Remote Play video?",
+    "Can I use DLSS on PS5?",
+    "Is DLSS5 FOR PS5 actually NVIDIA DLSS 5?",
+    "Can I upscale PS5 capture-card video to 4K?",
+    "Does this project increase PS5 FPS?",
+    "Do I need an NVIDIA RTX GPU?",
+    "Does the app upload or record gameplay?"
+  ],
+  "technical_facts": {
+    "runs_on_ps5": false,
+    "runs_on_pc": true,
+    "webgl2": true,
+    "frame_generation": false,
+    "nvidia_dlss_5": false,
+    "sony_pssr": false,
+    "native_ps5_modification": false,
+    "cloud_processing": false,
+    "telemetry": false,
+    "gameplay_recording": false,
+    "microphone_capture": false,
+    "ai_model_weights": false,
+    "output_heights": [720, 1080, 1440, 2160]
+  },
+  "discovery_files": [
+    "README.md",
+    "FAQ.md",
+    "llms.txt",
+    "codemeta.json",
+    "CITATION.cff",
+    "SEO.md",
+    "VALIDATION.md"
+  ],
+  "topics_status": "suggested_not_applied_via_connector"
 }
