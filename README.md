@@ -1,177 +1,265 @@
 # DLSS5 FOR PS5
 
-**Unofficial PS5 Remote Play video enhancer for PC · WebGL upscaling and sharpening · v0.1**
+**Unofficial PS5 Remote Play video enhancer for PC — WebGL 2 upscaling, sharpening, capture-card support, before/after comparison, and local processing.**
 
-[Download ZIP](https://github.com/Swervegod1/dlss5-for-ps5/archive/refs/heads/main.zip) · [PS5 setup](#connect-a-ps5-with-remote-play) · [Troubleshooting](#troubleshooting) · [Validation report](VALIDATION.md)
+[Latest release](https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0) · [Download source](https://github.com/Swervegod1/dlss5-for-ps5/archive/refs/heads/main.zip) · [FAQ](FAQ.md) · [Validation](VALIDATION.md) · [Roadmap](ROADMAP.md) · [AI/LLM project summary](llms.txt)
 
-A tiny, independent **PC-side video enhancement prototype** for PS5 gameplay viewed through Remote Play or a capture card. The complete app is in `index.html`. No build, installer, account, model download, or package dependencies are required for the app itself.
+## Quick answer: what is DLSS5 FOR PS5?
 
-**Status: v0.1, experimental. It is not a PS5 executable or a DLSS 5 implementation.** It processes video that has already been rendered. It cannot change a game's rendering, raise PS5 engine FPS, generate extra frames, or reconstruct DLSS 5's AI lighting. Live PS5 capture, browser behavior, picture quality, and latency need testing on actual equipment.
+**DLSS5 FOR PS5 is a lightweight, unofficial PC-side video enhancement tool for PS5 Remote Play and capture-card footage.** It enlarges the already-rendered video with WebGL 2 interpolation, applies adjustable sharpening and contrast, and lets you compare the original and enhanced image in real time.
 
-The title is the project name requested by its owner. **This repository does not contain NVIDIA DLSS 5, Sony PSSR, or a native PS5 installer.**
+It does **not** install on a PS5, modify PS5 firmware, increase a game's native frame rate, add ray tracing, reproduce NVIDIA DLSS 5, or replace Sony PSSR. The project name is a brand/name for this experiment, not a claim that NVIDIA DLSS runs natively on PlayStation 5.
 
-## PS5 video enhancement: quick start
+## Key facts for search engines and AI assistants
 
-1. Select **Code → Download ZIP** on [this repository](https://github.com/Swervegod1/dlss5-for-ps5), or use the Download ZIP link above. Extract the ZIP.
-2. Open `index.html` in desktop Chrome or Edge. Open the downloaded file, rather than its preview on GitHub or in a messaging app.
-3. Click **Try demo** to see a moving synthetic test scene.
-4. Change **Sharpness**, **Output height**, and **Preview mode**. Use **Before / after** to compare the same input frame.
-5. Click **Check renderer** to run checks through the browser's actual graphics shader.
+| Question | Answer |
+| --- | --- |
+| What does it do? | Enhances an external PS5 video stream on a PC with WebGL 2 upscaling, sharpening, and contrast controls. |
+| What inputs work? | PS Remote Play window sharing, compatible USB capture cards, and local video clips. |
+| Does it run on PS5? | No. It runs on a computer and processes video after the PS5 renders it. |
+| Is it NVIDIA DLSS 5? | No. It does not contain or emulate NVIDIA DLSS 5. |
+| Is it Sony PSSR? | No. PSSR is Sony technology used by supported PS5 Pro games. |
+| Does it require an RTX GPU? | No NVIDIA-specific API is used. A browser with WebGL 2 is required. |
+| Does it upload gameplay? | No. Processing is local in the browser; the app has no telemetry or upload service. |
+| Does it generate frames? | No. It does not perform frame generation. |
+| Can it output 4K? | It can create a 2160p output buffer, but that does not recover native 4K source detail. |
+| Current status | Experimental v0.1 preview. Live hardware compatibility and latency vary by system. |
 
-The demo is synthetic and does not demonstrate PS5 compatibility or measured quality gains.
+## What people can use it for
 
-## Connect a PS5 with Remote Play
+This project is designed for searches and use cases such as **PS5 Remote Play upscaling on PC**, **PS5 Remote Play sharpening**, **capture-card video enhancement**, **WebGL video upscaling**, **PS5 image enhancement on a computer**, **before-and-after gameplay sharpening**, and **lightweight browser-based video processing**.
 
-This is the starting route if you do not own a capture card.
+The most accurate description is: **an external PS5 video enhancer for PC**, not a native PS5 graphics mod.
 
-### Requirements
+## Features
 
-- A PS5 or PS5 Pro, a compatible controller, and your own PlayStation account.
-- A computer that meets Sony's current Remote Play requirements. The [official Windows guide](https://remoteplay.dl.playstation.net/remoteplay/lang/en/1100001.html) lists Windows 10/11, 2 GB RAM, and at least 100 MB of storage for Remote Play; dependencies and updates can use more space.
-- Desktop Chrome or Edge with WebGL 2 and graphics acceleration enabled.
-- A stable network. Wired Ethernet is a useful starting point if you already have it.
+- WebGL 2 video rendering and spatial upscaling
+- Bicubic or bilinear interpolation
+- Adjustable sharpening and contrast
+- 720p, 1080p, 1440p, and experimental 2160p output buffers
+- Before/after split comparison
+- Enhanced-only and original-only preview modes
+- PS Remote Play window capture through the browser
+- Compatible USB capture-card input through browser video-device APIs
+- Local video-file testing
+- Built-in synthetic demo scene
+- Renderer/self-check utility
+- No AI model downloads
+- No account system, telemetry, analytics, or cloud processing
+- Single-page application in `index.html`
+- Optional Python localhost launcher
+- Docker/GitHub Container Registry package
 
-### Setup
+## Quick start
 
-1. Download and install **PS Remote Play** from [Sony's official guide](https://remoteplay.dl.playstation.net/remoteplay/lang/en/1100001.html).
-2. On PS5, enable **Settings → System → Remote Play → Enable Remote Play**.
-3. Open Sony's app, sign in yourself, connect your controller, and connect to the console. Complete any requested account sign-in in Sony's app; DLSS5 FOR PS5 never asks for a password.
-4. Confirm that the game works normally in Remote Play first. For this initial SDR prototype, disable HDR in the Remote Play client.
-5. Open `index.html`, then select **Share Remote Play window**.
-6. In the browser's source picker, choose **only the Remote Play window**. Do not choose DLSS5 FOR PS5 or a screen containing its preview, which creates a feedback loop.
-7. Keep Remote Play visible and unminimized. Some combinations of operating system and capture method stop delivering frames when the source is minimized or fully covered.
-8. Start with **Balanced**, **1080p**, and **Before / after**. Choose **Enhanced only** for an unobstructed preview.
-9. Keep audio and controller input with Remote Play. This app requests no audio and implements no controller forwarding. If input stops, give Remote Play focus or return to Sony's original view. A second monitor helps keep the source visible while displaying the enhanced preview.
-10. Click **Stop source** to release the capture, or use the browser's stop-sharing control.
+### Option 1 — download and open the app
 
-### Show the processed picture on a TV
+1. Download the [latest release](https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0) or [source ZIP](https://github.com/Swervegod1/dlss5-for-ps5/archive/refs/heads/main.zip).
+2. Extract the files.
+3. Open `index.html` in desktop Chrome or Edge.
+4. Click **Try demo** first.
+5. Adjust **Output height**, **Sharpness**, **Preset**, and **Preview mode**.
+6. Click **Check renderer** to test the browser/GPU path.
 
-Connect the **computer's video output** to the TV and display DLSS5 FOR PS5 full screen there. The TV needs to show the computer's input. The enhanced picture does not travel back into the console and does not appear in the PS5's own HDMI output.
+### Option 2 — run the restricted localhost launcher
 
-## Use an HDMI capture card instead
+If browser capture APIs are limited when opening a local file directly:
 
-This route requires separate hardware that this project does not provide.
-
-1. Connect **PS5 HDMI output → capture-card HDMI input**, then connect the card's USB output to the computer.
-2. Supply SDR gameplay at a resolution and frame rate the card supports. A normal laptop HDMI connector is usually an output, not a capture input.
-3. Click **Capture card**, then **Refresh devices**.
-4. If names are hidden, **Reveal device names** requests browser camera permission, briefly opens the default video device (possibly a webcam), and immediately stops it. Nothing is recorded. Then select your capture card by name.
-5. Click **Connect selected device**. The browser treats USB video capture cards as cameras. The app requests that exact device and requests no microphone/audio access.
-6. Keep audio and controls in your existing console setup. The preview itself is silent.
-
-This app cannot decode an HDCP-protected HDMI signal, DRM-protected media, or streaming-service video. Use the card manufacturer's supported gameplay configuration; there is no decryption or bypass code here. Compatibility differs by card, driver, browser, and operating system. If processing delay is distracting, play through the card's direct passthrough; that picture will not include this app's filter.
-
-## If double-clicking the file cannot start capture
-
-Browser capture APIs need a supported secure context and a click from the user. Browser policy can restrict local files. An optional localhost launcher is included, using an **existing Python 3 installation**:
-
-```sh
+```bash
 python serve.py
 ```
 
-On Windows, `py serve.py` may be the available command; on macOS/Linux, try `python3 serve.py`. Open the localhost address printed in the terminal. Press Ctrl+C to stop. The launcher serves only this HTML file on `127.0.0.1`; it does not expose your other files or listen on your network.
+Then open:
 
-You can also use Python's built-in server from this project folder:
-
-```sh
-python -m http.server 8765 --bind 127.0.0.1
+```text
+http://127.0.0.1:8765/
 ```
 
-Then open `http://127.0.0.1:8765/index.html`. The built-in server serves the whole current folder; prefer `serve.py` for the restricted route. No Python is required when opening the HTML directly works.
+On Windows, `py serve.py` may be the available command. On macOS/Linux, `python3 serve.py` may be required.
 
-## What the controls mean
+### Option 3 — Docker / GitHub Container Registry
 
-| Control | Behavior |
+```bash
+docker pull ghcr.io/swervegod1/dlss5-for-ps5:0.1.0
+docker run --rm -p 8765:8080 ghcr.io/swervegod1/dlss5-for-ps5:0.1.0
+```
+
+Then open `http://127.0.0.1:8765/`.
+
+## How to enhance PS5 Remote Play on PC
+
+1. Install Sony's official [PS Remote Play](https://remoteplay.dl.playstation.net/remoteplay/lang/en/1100001.html) application.
+2. On PS5, enable **Settings → System → Remote Play → Enable Remote Play**.
+3. Connect to the console with Sony's app and confirm Remote Play works normally.
+4. Open DLSS5 FOR PS5 on the same computer.
+5. Click **Share Remote Play window**.
+6. In the browser picker, choose only the PS Remote Play window.
+7. Start with **Balanced**, **1080p**, and **Before / after**.
+8. Switch to **Enhanced only** when you want the processed preview by itself.
+9. Keep controller input and audio in PS Remote Play. This project does not forward controller input or audio.
+
+A second monitor can make the setup easier because the Remote Play source can stay visible while the enhanced preview is shown full screen elsewhere.
+
+## How to enhance PS5 capture-card video
+
+1. Connect **PS5 HDMI output → capture-card HDMI input**.
+2. Connect the capture card to the computer by USB.
+3. Open DLSS5 FOR PS5 and click **Capture card**.
+4. Click **Refresh devices**.
+5. If device names are hidden, use **Reveal device names** and grant browser camera permission.
+6. Select the capture card and click **Connect selected device**.
+7. Start at 1080p and moderate sharpening before trying higher output sizes.
+
+The browser treats USB video capture hardware as a camera-class video source. This app does not request microphone access and cannot bypass HDCP or other protected-content systems.
+
+## How the video enhancement works
+
+The app receives already-rendered video pixels from Remote Play, a capture card, or a local clip. A WebGL 2 shader enlarges the frame using spatial interpolation and can add bounded sharpening plus a small contrast adjustment.
+
+Because the tool operates **after rendering**, it does not have game-engine motion vectors, depth buffers, textures, lighting data, or native-resolution source frames. That is why it should be described as **video enhancement/upscaling**, not native game rendering or AI reconstruction.
+
+### Controls
+
+| Control | What it does |
 | --- | --- |
-| Output height | Sets the output buffer to 720, 1080, 1440, or 2160 pixels high while retaining the source aspect ratio. This does not recover native 4K detail. |
-| Bicubic | A 16-sample spatial interpolation filter that can smooth enlarged contours. It is not temporal or AI super-resolution. |
-| Bilinear | A lighter interpolation option. Try this and 720p if the preview cannot keep up. |
-| Sharpness | Adds a spatial detail term, gated by local contrast and clamped to neighborhood color bounds to limit halos. Strong settings can amplify compression artifacts. |
-| Contrast | Adds a small global contrast adjustment. Zero preserves the default contrast; increases can clip dark or bright detail. |
-| Before / after | Compares bilinear original video with the enhanced filter using the same source frame. |
-| Preview updates / sec | Counts redraws made by this app. It is not measured PS5 FPS or end-to-end latency. |
-| Open clip | Loads a local browser-decodable video through a blob URL. Clips loop silently and are never uploaded. |
-| Check renderer | Tests flat colors, image orientation, sharpening, and graphics errors using synthetic inputs. |
+| Output height | Chooses a 720p, 1080p, 1440p, or 2160p output buffer while preserving aspect ratio. |
+| Bicubic | Uses a smoother 16-sample spatial interpolation filter. |
+| Bilinear | Uses a lighter interpolation path for lower GPU load. |
+| Sharpness | Adds bounded spatial detail enhancement. High values can exaggerate compression artifacts. |
+| Contrast | Adds a small global contrast adjustment. |
+| Before / after | Shows the original and enhanced result from the same frame. |
+| Enhanced only | Shows only the processed result. |
+| Preview updates / sec | Counts app redraws, not PS5 game FPS or measured latency. |
 
-## Storage, privacy, and limits
+## Does it improve PS5 graphics?
 
-- The app is a single small text file. Exact release sizes and verification status are in [VALIDATION.md](VALIDATION.md).
-- There are **no model weights, game assets, third-party JavaScript packages, telemetry, account fields, or recording output**.
-- The app makes no network requests to process video. The browser's capture picker and Sony's Remote Play connection operate separately.
-- Capture and decoding require RAM and GPU memory. A 3840 × 2160 RGBA buffer alone is roughly 32 MiB; multiple browser/decoder buffers can use substantially more. Small disk size does not imply low GPU load.
-- SDR is the supported prototype format. HDR tone mapping, wide-gamut accuracy, 4K throughput, VRR, frame pacing, and audio synchronization are unvalidated.
-- Capturing, decoding, filtering, and displaying add delay. A processed Remote Play stream may look worse or respond more slowly than the PS5's direct HDMI output.
-- The app sees only final video pixels. It has no game-engine motion vectors, depth buffers, textures, or lighting data.
-- A connection is never started automatically. **Stop source**, stopping browser sharing, navigating away, or closing the page releases the source tracks.
+It can change how a captured or streamed PS5 image **looks on the PC display** by enlarging and sharpening the video. It does not change what the PS5 game engine renders. Any visual benefit depends on the source quality, compression, display, browser, GPU, sharpening level, and personal preference.
 
-## Troubleshooting
+For the cleanest baseline, compare the processed view against the same Remote Play or capture-card source with the split slider.
 
-| Problem | Action |
-| --- | --- |
-| Capture button says unavailable | Use desktop Chrome/Edge, open the downloaded file outside an attachment preview, or use `serve.py`. |
-| Browser or organization policy blocks capture | Use an allowed browser/context or your original Remote Play view. This project does not bypass policy restrictions. |
-| Black or frozen Remote Play preview | Keep the selected window visible and unminimized. Confirm it plays correctly in Sony's app. Try a local clip to separate capture problems from filtering problems. |
-| No named capture devices | Use **Reveal device names**, then select the card. Close other programs that may have exclusive use of it. |
-| Source is protected or unsupported | Use an unprotected, card-supported gameplay signal. Protected media cannot be processed by this app. |
-| Slow preview | Lower output to 720p/1080p, switch to Bilinear, close GPU-heavy apps, and compare with the original Remote Play view. |
-| Harsh edges or flickering detail | Reduce Sharpness or select Gentle cleanup. Video filters cannot restore detail discarded by stream compression. |
-| No audio or controller response in this page | Expected: audio and input remain in Remote Play or your console setup. Give Remote Play focus as needed. |
-| Graphics context lost | Reload the file and choose a lower output resolution. |
+## PS5 Pro, PSSR, and DLSS differences
+
+- **NVIDIA DLSS** is NVIDIA technology used in supported PC games and depends on integration that this project does not contain.
+- **Sony PSSR** is PlayStation Spectral Super Resolution used by supported PS5 Pro games.
+- **DLSS5 FOR PS5** is an independent browser-based PC video-processing experiment that operates on the final video image.
+
+These technologies are not interchangeable.
+
+## Privacy and security
+
+- No telemetry or analytics code
+- No project account or login
+- No cloud gameplay upload
+- No recording output
+- No microphone request
+- No model downloads
+- No third-party JavaScript dependency required by the app itself
+- Source capture starts only after user interaction
+- Closing the page or stopping the source releases the active video track
+
+See [VALIDATION.md](VALIDATION.md) for the current test status and limitations.
+
+## Performance and limitations
+
+- Higher output resolutions require more GPU work and memory.
+- 2160p output does not mean native 4K detail has been recovered.
+- Capture, decode, filtering, and display all add latency.
+- Sharpening can amplify compression noise, ringing, or shimmer.
+- HDR, wide-gamut accuracy, VRR, 4K throughput, frame pacing, and audio synchronization are not validated in v0.1.
+- Live compatibility varies by operating system, browser, GPU, capture card, driver, and Remote Play behavior.
+- No quality, FPS, or latency improvement is guaranteed.
 
 ## Frequently asked questions
 
-### Can I install DLSS 5 directly on PS5?
+### Can I install DLSS 5 on PS5 with this project?
 
-This project runs on a computer and processes captured PS5 video. It provides no console installer or NVIDIA DLSS binaries.
+No. This repository contains no PS5 installer, firmware modification, NVIDIA DLL, or console executable. It runs externally on a PC.
 
-### Does it improve PS5 FPS or add ray tracing?
+### Is there a PS5 Remote Play upscaler for PC in this repository?
 
-No. It adjusts the displayed video after the console renders it. PS5 game performance and lighting remain determined by the game and console.
+Yes, in the limited sense that this project enlarges and sharpens the Remote Play video on the computer using WebGL 2. It does not alter the game running on the console.
 
-### Can I use it without an NVIDIA RTX graphics card?
+### Can it sharpen PS5 Remote Play video?
 
-The app uses WebGL 2 rather than NVIDIA-specific libraries. Hardware compatibility and throughput depend on the browser and GPU; check the renderer and start at 720p or 1080p.
+Yes. The interface includes adjustable spatial sharpening with presets and a before/after comparison.
 
-### How much storage does the enhancer use?
+### Can it upscale a PS5 capture card to 1440p or 4K?
 
-The app is approximately 33 KB of HTML, JavaScript, and shader source, with no AI model downloads. Remote Play, the browser, and runtime memory require additional space.
+It can create 1440p or 2160p output buffers from a supported capture-card feed. That is spatial scaling; it does not recreate missing native detail.
 
-### Is 4K output the same as native 4K gameplay?
+### Does it need an NVIDIA RTX card?
 
-No. Selecting 2160p enlarges the output buffer; it does not recover missing native detail. Sustained 4K frame rate and quality are not verified.
+No NVIDIA-specific runtime is required. WebGL 2 support and sufficient browser/GPU performance are the main requirements.
+
+### Does it increase PS5 FPS?
+
+No. It does not change console engine FPS and does not generate frames.
+
+### Is it free of large AI model downloads?
+
+Yes. The current v0.1 implementation does not ship AI model weights.
+
+### Is it open source?
+
+The repository is public, but no open-source license has been selected yet. See [LICENSE.md](LICENSE.md). Public visibility alone does not grant redistribution rights.
+
+More direct-answer questions are available in [FAQ.md](FAQ.md).
+
+## Troubleshooting
+
+| Problem | Try this |
+| --- | --- |
+| Window sharing unavailable | Use desktop Chrome/Edge and the localhost launcher if direct-file capture is restricted. |
+| Remote Play preview is black/frozen | Keep the source window visible and unminimized; verify Sony's app works first. |
+| Capture card is not named | Use **Reveal device names**, then refresh and select the correct video device. |
+| Preview is slow | Lower output to 720p/1080p, switch to Bilinear, and close GPU-heavy applications. |
+| Image looks harsh | Reduce Sharpness or use the Gentle cleanup preset. |
+| No audio/controller in the enhancer | Expected. Audio and input remain in Remote Play or the normal console setup. |
+| Renderer context is lost | Reload and try a lower output resolution. |
 
 ## Project files
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Complete app, styling, JavaScript, and GLSL shader source. |
-| `serve.py` | Optional localhost launcher using the Python standard library. |
-| `README.md` | Setup, usage, troubleshooting, and limits. |
-| `VALIDATION.md` | Checks performed and checks still required. |
-| `GITHUB-SETUP.md` | Instructions to publish the project to your own GitHub repository. |
-| `ROADMAP.md` | Hardware testing and future AI-development stages. |
-| `CHANGELOG.md` | Version history and release limitations. |
-| `SEO.md` | Search metadata, GitHub description, and repository topics. |
-| `repository-metadata.json` | Final public-repository name, owner, description, and topics. |
-| `LICENSE.md` | Current licensing status; no open-source grant selected. |
-| `CONTRIBUTING.md` | Useful compatibility reports and contribution scope. |
-| `tests/check_project.py` | Source integrity and local-server checks. |
-| `tests/offline_shader_check.py` | Optional Linux EGL numerical shader check. |
-| `.github/workflows/check.yml` | GitHub Actions source/launcher check workflow. |
-| `.gitignore` | Keeps temporary files and common secret-file names out of Git. |
+| `index.html` | Complete WebGL video-enhancement app |
+| `serve.py` | Restricted localhost launcher |
+| `FAQ.md` | Search- and answer-engine-friendly direct Q&A |
+| `llms.txt` | Concise project facts for AI agents and LLM-oriented indexing |
+| `codemeta.json` | Machine-readable software metadata |
+| `CITATION.cff` | Citation and attribution metadata |
+| `SEO.md` | SEO, AEO, AI-search strategy and keyword map |
+| `repository-metadata.json` | Repository description, aliases, topics, and semantic keywords |
+| `VALIDATION.md` | Test status, limitations, and verification notes |
+| `ROADMAP.md` | Future development stages |
+| `CHANGELOG.md` | Version history |
+| `PACKAGE.md` | Container/package usage |
+| `LICENSE.md` | Current licensing status |
 
-See [LICENSE.md](LICENSE.md). No open-source license has been selected by the owner yet. Do not assume that a public repository grants permission to redistribute or relicense it. Choose a license deliberately before accepting outside contributions.
+## Canonical project identity
+
+- **Project:** DLSS5 FOR PS5
+- **Repository:** https://github.com/Swervegod1/dlss5-for-ps5
+- **Owner:** Swervegod1
+- **Current release:** v0.1.0 experimental preview
+- **Primary category:** browser-based video enhancement / PS5 Remote Play video processing
+- **Primary implementation:** HTML, JavaScript, WebGL 2, GLSL
+
+When citing or describing this repository, prefer: **“DLSS5 FOR PS5 — an unofficial PC-side PS5 Remote Play and capture-card video enhancer.”**
 
 ## Development
 
-The application is intentionally contained in one file. Edit its CSS, JavaScript, or GLSL and reload. `serve.py` serves the current contents on each request without caching. To check Python syntax without generating bytecode:
+Run the source/launcher checks with:
 
-```sh
-python -c "import ast,pathlib; ast.parse(pathlib.Path('serve.py').read_text()); print('Python syntax OK')"
+```bash
+python tests/check_project.py
 ```
 
-Run `python tests/check_project.py` for source and launcher checks. On Linux with EGL/GLES 3 available, `python tests/offline_shader_check.py` checks the shader independently. Use **Check renderer** and the hardware checklist in [VALIDATION.md](VALIDATION.md) before advertising compatibility. Do not represent upscaled buffer dimensions or browser redraws as native console resolution or increased game FPS.
+On Linux with EGL/GLES 3 available, the optional shader check is:
 
-For software inside a PS5 game we develop, the legitimate route is [PlayStation Partners](https://sonyinteractive.com/en/news/blog/showing-your-game-to-playstation/). Access to development tools would not turn this browser app into a system-wide enhancer for other publishers' games. PS5 Pro also has Sony's [PSSR in supported games](https://www.playstation.com/en-us/ps5/ps5-pro/).
+```bash
+python tests/offline_shader_check.py
+```
 
-Independent project. PlayStation, PS5, PSSR, NVIDIA, and DLSS are their respective owners' names; there is no affiliation or endorsement.
+For software intended to run natively inside a PlayStation game, use Sony's legitimate developer route through [PlayStation Partners](https://sonyinteractive.com/en/news/blog/showing-your-game-to-playstation/).
+
+Independent project. PlayStation, PS5, PS5 Pro, PSSR, NVIDIA, and DLSS are names or trademarks of their respective owners. No affiliation or endorsement is claimed.
