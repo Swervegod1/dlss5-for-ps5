@@ -1,0 +1,106 @@
+name: Publish release and GitHub Package
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+      - serve.py
+      - Dockerfile
+      - nginx.conf
+      - PACKAGE.md
+      - RELEASE_NOTES_v0.1.0.md
+      - .github/workflows/publish.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: publish-v0.1.0
+  cancel-in-progress: false
+
+env:
+  IMAGE_NAME: ghcr.io/swervegod1/dlss5-for-ps5
+  RELEASE_TAG: v0.1.0
+
+jobs:
+  package:
+    name: Publish GHCR container
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Sign in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and publish container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:0.1.0
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=0.1.0
+
+  release:
+    name: Create GitHub pre-release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build downloadable preview archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          zip -9 -j dist/dlss5-for-ps5-v0.1.0.zip \
+            index.html \
+            serve.py \
+            README.md \
+            LICENSE.md \
+            CHANGELOG.md \
+            VALIDATION.md \
+            PACKAGE.md \
+            Dockerfile \
+            nginx.conf
+
+      - name: Create or refresh v0.1.0 pre-release
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            gh release upload "${RELEASE_TAG}" \
+              dist/dlss5-for-ps5-v0.1.0.zip \
+              index.html \
+              --clobber \
+              --repo "${GITHUB_REPOSITORY}"
+          else
+            gh release create "${RELEASE_TAG}" \
+              dist/dlss5-for-ps5-v0.1.0.zip \
+              index.html \
+              --target "${GITHUB_SHA}" \
+              --title "DLSS5 FOR PS5 v0.1.0 — Experimental Preview" \
+              --notes-file RELEASE_NOTES_v0.1.0.md \
+              --prerelease \
+              --repo "${GITHUB_REPOSITORY}"
+          fi
