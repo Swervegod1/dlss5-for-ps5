@@ -1,0 +1,24 @@
+{
+  "name": "dlss5-for-ps5",
+  "owner": "Swervegod1",
+  "visibility": "public",
+  "description": "DLSS5 FOR PS5: unofficial PC-side PS5 Remote Play and capture-card video enhancer. Lightweight WebGL 2 upscaling, sharpening, before/after comparison and local processing. No model downloads. Experimental prototype; not NVIDIA DLSS 5 or native PS5 software.",
+  "topics": [
+    "ps5",
+    "playstation-5",
+    "remote-play",
+    "ps-remote-play",
+    "video-enhancement",
+    "video-upscaling",
+    "image-sharpening",
+    "webgl2",
+    "glsl",
+    "capture-card",
+    "browser-app",
+    "lightweight",
+    "experimental"
+  ],
+  "repository_url": "https://github.com/Swervegod1/dlss5-for-ps5",
+  "release_status": "experimental",
+  "topics_status": "suggested_not_applied"
+}
