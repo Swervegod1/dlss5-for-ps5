@@ -1,0 +1,61 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "DLSS5 FOR PS5",
+  "alternateName": [
+    "DLSS5 FOR PS5 PC video enhancer",
+    "PS5 Remote Play video enhancer",
+    "PS5 Remote Play upscaler",
+    "PS5 capture-card video enhancer"
+  ],
+  "description": "Unofficial PC-side PS5 Remote Play and capture-card video enhancer using WebGL 2 spatial upscaling, sharpening, contrast controls, and before/after comparison. It is not NVIDIA DLSS 5, Sony PSSR, or native PS5 software.",
+  "codeRepository": "https://github.com/Swervegod1/dlss5-for-ps5",
+  "issueTracker": "https://github.com/Swervegod1/dlss5-for-ps5/issues",
+  "downloadUrl": "https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0",
+  "version": "0.1.0",
+  "dateCreated": "2026-09-12",
+  "datePublished": "2026-09-12",
+  "developmentStatus": "concept",
+  "programmingLanguage": [
+    "HTML",
+    "JavaScript",
+    "GLSL",
+    "Python"
+  ],
+  "runtimePlatform": "Desktop web browser with WebGL 2",
+  "operatingSystem": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "applicationCategory": "MultimediaApplication",
+  "applicationSubCategory": "Video enhancement and upscaling",
+  "keywords": [
+    "PS5 Remote Play upscaler",
+    "PS5 Remote Play enhancer",
+    "PS5 video enhancer",
+    "PS5 capture card",
+    "video upscaling",
+    "video sharpening",
+    "WebGL 2",
+    "GLSL",
+    "browser video processing",
+    "gameplay video enhancement",
+    "capture card enhancement"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Swervegod1",
+    "url": "https://github.com/Swervegod1"
+  },
+  "maintainer": {
+    "@type": "Person",
+    "name": "Swervegod1",
+    "url": "https://github.com/Swervegod1"
+  },
+  "isAccessibleForFree": true,
+  "license": "https://github.com/Swervegod1/dlss5-for-ps5/blob/main/LICENSE.md",
+  "softwareRequirements": "Desktop Chrome or Edge with WebGL 2 and graphics acceleration; optional Python 3 or Docker for local serving.",
+  "releaseNotes": "https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0",
+  "readme": "https://github.com/Swervegod1/dlss5-for-ps5/blob/main/README.md"
+}
