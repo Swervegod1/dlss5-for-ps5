@@ -1,0 +1,50 @@
+name: Feature request
+description: Suggest an improvement to video processing, usability, packaging, documentation, testing, or compatibility.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What user problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the behavior, not just the technology.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Remote Play
+        - Capture card
+        - Video rendering
+        - Performance
+        - User interface
+        - Accessibility
+        - Packaging
+        - Documentation
+        - SEO/AEO/discovery
+        - Research
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or examples
+      description: Include public references, measurements, or screenshots when useful.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: I understand this project is an external PC-side video enhancer and not native PS5/NVIDIA DLSS software.
+          required: true
