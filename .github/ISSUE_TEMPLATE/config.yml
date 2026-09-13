@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project FAQ
+    url: https://github.com/Swervegod1/dlss5-for-ps5/blob/main/FAQ.md
+    about: Read direct answers about PS5 Remote Play upscaling, capture cards, WebGL processing, and project limitations.
+  - name: Validation and compatibility notes
+    url: https://github.com/Swervegod1/dlss5-for-ps5/blob/main/VALIDATION.md
+    about: Check current validation status before opening a compatibility issue.
+  - name: Project plan
+    url: https://github.com/Swervegod1/dlss5-for-ps5/blob/main/PROJECT.md
+    about: See active workstreams, priorities, and milestone ideas.
