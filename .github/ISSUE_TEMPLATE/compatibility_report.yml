@@ -1,0 +1,70 @@
+name: Hardware compatibility report
+description: Share a PS Remote Play, GPU/browser, or capture-card compatibility result to help build the public matrix.
+title: "[Compatibility]: "
+body:
+  - type: dropdown
+    id: result
+    attributes:
+      label: Overall result
+      options:
+        - Works well
+        - Works with limitations
+        - Does not work
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+    validations:
+      required: true
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU and driver version
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source
+      options:
+        - PS Remote Play
+        - USB capture card
+        - Local video clip
+        - Built-in demo
+    validations:
+      required: true
+  - type: input
+    id: card
+    attributes:
+      label: Capture-card model
+      description: Leave blank if not applicable.
+  - type: input
+    id: sourceformat
+    attributes:
+      label: Source resolution/frame rate
+      placeholder: 1920x1080 60 fps
+  - type: input
+    id: output
+    attributes:
+      label: Enhancer output setting
+      placeholder: 1080p, Bicubic, Balanced
+  - type: textarea
+    id: observations
+    attributes:
+      label: Observations
+      description: Note smoothness, artifacts, capture behavior, and any measured latency. Do not estimate performance as fact.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: I removed account names, serial numbers, tokens, and other private information from this report.
+          required: true
