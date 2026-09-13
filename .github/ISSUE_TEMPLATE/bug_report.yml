@@ -1,0 +1,86 @@
+name: Bug report
+description: Report a reproducible problem with the renderer, Remote Play capture, capture-card input, packaging, or launcher.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping test DLSS5 FOR PS5. Please avoid account credentials, serial numbers, or private capture links.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 140 / Edge 140
+    validations:
+      required: true
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU
+      placeholder: NVIDIA / AMD / Intel model
+  - type: dropdown
+    id: source
+    attributes:
+      label: Video source
+      options:
+        - Built-in demo
+        - Local video clip
+        - PS Remote Play window
+        - USB capture card
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: capture
+    attributes:
+      label: Capture-card model
+      description: Only if relevant.
+  - type: input
+    id: inputresolution
+    attributes:
+      label: Input resolution/frame rate
+      placeholder: 1920x1080 60 fps
+  - type: input
+    id: outputresolution
+    attributes:
+      label: Selected output height
+      placeholder: 1080p
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open...
+        2. Select...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: renderer
+    attributes:
+      label: Renderer check output or console error
+      description: Paste only non-sensitive diagnostic text.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I reproduced this on the latest main branch or latest release.
+          required: true
+        - label: I verified the source video works normally without this enhancer.
