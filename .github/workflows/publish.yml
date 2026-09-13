@@ -11,6 +11,13 @@ on:
       - nginx.conf
       - PACKAGE.md
       - RELEASE_NOTES_v0.1.0.md
+      - '**/*.md'
+      - '*.json'
+      - '*.cff'
+      - llms.txt
+      - assets/**
+      - scripts/**
+      - tests/**
       - .github/workflows/publish.yml
   workflow_dispatch:
 
@@ -34,6 +41,11 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Validate source and complete release archive
+        run: python3 tests/check_project.py
 
       - name: Sign in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -67,22 +79,17 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Validate source and complete release archive
+        run: python3 tests/check_project.py
 
       - name: Build downloadable preview archive
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p dist
-          zip -9 -j dist/dlss5-for-ps5-v0.1.0.zip \
-            index.html \
-            serve.py \
-            README.md \
-            LICENSE.md \
-            CHANGELOG.md \
-            VALIDATION.md \
-            PACKAGE.md \
-            Dockerfile \
-            nginx.conf
+          python3 scripts/build_release.py dist/dlss5-for-ps5-v0.1.0.zip
 
       - name: Create or refresh v0.1.0 pre-release
         shell: bash
@@ -93,6 +100,9 @@ jobs:
               dist/dlss5-for-ps5-v0.1.0.zip \
               index.html \
               --clobber \
+              --repo "${GITHUB_REPOSITORY}"
+            gh release edit "${RELEASE_TAG}" \
+              --notes-file RELEASE_NOTES_v0.1.0.md \
               --repo "${GITHUB_REPOSITORY}"
           else
             gh release create "${RELEASE_TAG}" \

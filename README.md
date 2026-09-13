@@ -1,8 +1,12 @@
 # DLSS5 FOR PS5
 
+![DLSS5 FOR PS5: unofficial PC video enhancement, local processing and no model downloads](assets/project-banner.svg)
+
+[![Source and launcher checks](https://github.com/Swervegod1/dlss5-for-ps5/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/Swervegod1/dlss5-for-ps5/actions/workflows/check.yml)
+
 **Unofficial PS5 Remote Play video enhancer for PC — WebGL 2 upscaling, sharpening, capture-card support, before/after comparison, and local processing.**
 
-[Latest release](https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0) · [Download source](https://github.com/Swervegod1/dlss5-for-ps5/archive/refs/heads/main.zip) · [FAQ](FAQ.md) · [Validation](VALIDATION.md) · [Roadmap](ROADMAP.md) · [AI/LLM project summary](llms.txt)
+[Latest release](https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0) · [Download source](https://github.com/Swervegod1/dlss5-for-ps5/archive/refs/heads/main.zip) · [FAQ](FAQ.md) · [Validation](VALIDATION.md) · [Roadmap](ROADMAP.md) · [Support](SUPPORT.md) · [Report compatibility](https://github.com/Swervegod1/dlss5-for-ps5/issues/new?template=compatibility_report.yml)
 
 ## Quick answer: what is DLSS5 FOR PS5?
 
@@ -10,7 +14,7 @@
 
 It does **not** install on a PS5, modify PS5 firmware, increase a game's native frame rate, add ray tracing, reproduce NVIDIA DLSS 5, or replace Sony PSSR. The project name is a brand/name for this experiment, not a claim that NVIDIA DLSS runs natively on PlayStation 5.
 
-## Key facts for search engines and AI assistants
+## At a glance
 
 | Question | Answer |
 | --- | --- |
@@ -23,13 +27,15 @@ It does **not** install on a PS5, modify PS5 firmware, increase a game's native 
 | Does it upload gameplay? | No. Processing is local in the browser; the app has no telemetry or upload service. |
 | Does it generate frames? | No. It does not perform frame generation. |
 | Can it output 4K? | It can create a 2160p output buffer, but that does not recover native 4K source detail. |
-| Current status | Experimental v0.1 preview. Live hardware compatibility and latency vary by system. |
+| Current status | Experimental v0.1 preview. Live PS5 hardware, capture cards and latency remain untested. |
 
 ## What people can use it for
 
-This project is designed for searches and use cases such as **PS5 Remote Play upscaling on PC**, **PS5 Remote Play sharpening**, **capture-card video enhancement**, **WebGL video upscaling**, **PS5 image enhancement on a computer**, **before-and-after gameplay sharpening**, and **lightweight browser-based video processing**.
+- Compare spatial sharpening on local video clips or the synthetic demo.
+- Experiment with an external PC preview of PS Remote Play or a USB capture-card feed.
+- Study a self-contained WebGL 2 shader without installing model weights.
 
-The most accurate description is: **an external PS5 video enhancer for PC**, not a native PS5 graphics mod.
+**Live PS5 compatibility is still unverified.** The [validation report](VALIDATION.md) separates source and shader checks from the hardware testing still needed.
 
 ## Features
 
@@ -77,14 +83,14 @@ http://127.0.0.1:8765/
 
 On Windows, `py serve.py` may be the available command. On macOS/Linux, `python3 serve.py` may be required.
 
-### Option 3 — Docker / GitHub Container Registry
+### Option 3 — Docker / GitHub Container Registry (optional, larger download)
 
 ```bash
 docker pull ghcr.io/swervegod1/dlss5-for-ps5:0.1.0
-docker run --rm -p 8765:8080 ghcr.io/swervegod1/dlss5-for-ps5:0.1.0
+docker run --rm -p 127.0.0.1:8765:8080 ghcr.io/swervegod1/dlss5-for-ps5:0.1.0
 ```
 
-Then open `http://127.0.0.1:8765/`.
+Then open `http://127.0.0.1:8765/`. The explicit `127.0.0.1` port mapping binds the published port to loopback. The container is optional and uses substantially more disk space than opening the HTML file; choose Option 1 for the smallest download. See [package details and local build fallback](PACKAGE.md).
 
 ## How to enhance PS5 Remote Play on PC
 
@@ -217,13 +223,19 @@ More direct-answer questions are available in [FAQ.md](FAQ.md).
 | No audio/controller in the enhancer | Expected. Audio and input remain in Remote Play or the normal console setup. |
 | Renderer context is lost | Reload and try a lower output resolution. |
 
+## Help improve compatibility
+
+Start with [Support](SUPPORT.md), then use the [bug report](https://github.com/Swervegod1/dlss5-for-ps5/issues/new?template=bug_report.yml) or [hardware compatibility form](https://github.com/Swervegod1/dlss5-for-ps5/issues/new?template=compatibility_report.yml). Include your OS, browser, GPU, source, output settings and renderer-check results. Reports with a repeatable comparison are more useful than estimated performance claims.
+
+If the experiment is useful to you, star the repository to find it again, or watch releases for updates. See the [project plan](PROJECT.md) and [contribution notes](CONTRIBUTING.md) before starting code changes.
+
 ## Project files
 
 | File | Purpose |
 | --- | --- |
 | `index.html` | Complete WebGL video-enhancement app |
 | `serve.py` | Restricted localhost launcher |
-| `FAQ.md` | Search- and answer-engine-friendly direct Q&A |
+| `FAQ.md` | Answers to setup, compatibility, and graphics questions |
 | `llms.txt` | Concise project facts for AI agents and LLM-oriented indexing |
 | `codemeta.json` | Machine-readable software metadata |
 | `CITATION.cff` | Citation and attribution metadata |
@@ -234,6 +246,10 @@ More direct-answer questions are available in [FAQ.md](FAQ.md).
 | `CHANGELOG.md` | Version history |
 | `PACKAGE.md` | Container/package usage |
 | `LICENSE.md` | Current licensing status |
+| `SUPPORT.md` | Troubleshooting and report entry points |
+| `PROJECT.md` | Workstreams and milestones |
+| `scripts/build_release.py` | Complete source archive with file hashes |
+| `scripts/apply_github_metadata.py` | Preview/apply reviewed GitHub About settings |
 
 ## Canonical project identity
 

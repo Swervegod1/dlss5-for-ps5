@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">DLSS5 FOR PS5 — PC video enhancer</title>
+  <desc id="desc">Unofficial WebGL 2 prototype for PS Remote Play and capture-card video. Spatial upscaling, sharpening, and before-and-after comparison. No model downloads. Live PS5 compatibility remains untested.</desc>
+  <defs><linearGradient id="bg"><stop stop-color="#14233d"/><stop offset="1" stop-color="#080c16"/></linearGradient></defs>
+  <rect width="1280" height="360" rx="20" fill="url(#bg)"/>
+  <g font-family="system-ui, Segoe UI, sans-serif">
+    <text x="54" y="57" fill="#bcf583" font-size="16" font-weight="700" letter-spacing="2">UNOFFICIAL · EXPERIMENTAL · PC-SIDE</text>
+    <text x="50" y="137" fill="#edf3ff" font-size="60" font-weight="800">DLSS5 FOR PS5</text>
+    <text x="54" y="182" fill="#88b4ff" font-size="25">PS Remote Play &amp; capture-card video enhancer</text>
+    <text x="54" y="232" fill="#c5d5ed" font-size="21">Spatial upscaling · Sharpening · Before / after</text>
+    <text x="54" y="279" fill="#bcf583" font-size="18">One HTML app. Local processing. No model downloads.</text>
+    <text x="54" y="326" fill="#a6b4cb" font-size="16">Not NVIDIA DLSS 5 or a PS5 installer. Live PS5 compatibility remains untested.</text>
+  </g>
+  <g fill="none" stroke-width="2">
+    <rect x="940" y="70" width="266" height="170" rx="14" stroke="#526985"/>
+    <path d="M958 213L1006 142L1047 190L1091 115L1188 213" stroke="#88b4ff"/>
+    <path d="M1073 85V225" stroke="#edf3ff"/>
+    <circle cx="1073" cy="155" r="12" fill="#edf3ff" stroke="#edf3ff"/>
+    <path d="M1048 261H1098M1073 240V261" stroke="#526985"/>
+  </g>
+</svg>

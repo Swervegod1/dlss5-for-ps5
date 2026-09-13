@@ -6,7 +6,9 @@ This file documents the recommended GitHub Topics and search phrases for **DLSS5
 
 Use these in the repository **About → Topics** field (GitHub currently allows up to 20 topics):
 
-`ps5` `playstation-5` `remote-play` `ps-remote-play` `video-upscaling` `video-enhancement` `image-sharpening` `webgl2` `glsl` `capture-card` `browser-app` `javascript` `gaming-tools` `video-processing` `graphics` `upscaling` `ps5-pro` `game-streaming` `open-web` `experimental`
+`ps5` `playstation-5` `ps-remote-play` `remote-play` `capture-card` `video-enhancement` `video-upscaling` `video-processing` `image-sharpening` `upscaling` `webgl` `webgl2` `glsl` `javascript` `html5` `browser-app` `game-streaming` `gaming-tools` `bicubic` `real-time`
+
+These are prepared settings, not proof that the GitHub About topics are live. Editing this file alone does not apply them. See [GITHUB-SETUP.md](GITHUB-SETUP.md#apply-the-reviewed-about-settings) for the reviewed command.
 
 ## Primary search phrases
 

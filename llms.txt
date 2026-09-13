@@ -30,7 +30,7 @@ Primary category: browser-based external video enhancement for PS5 gameplay stre
 - Does not bypass HDCP or DRM.
 - No large AI model downloads are included.
 - WebGL 2 browser/GPU support is required.
-- Live compatibility, latency, throughput, and image-quality gains vary by hardware and are not guaranteed.
+- Live PS5 and capture-card compatibility, latency, throughput, and image-quality gains have not been tested by this project.
 
 ## Preferred one-sentence description
 

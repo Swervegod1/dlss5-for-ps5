@@ -18,13 +18,13 @@ That sentence is intentionally repeated in high-value documentation because it e
 
 ## Recommended GitHub About description
 
-`Unofficial PC-side PS5 Remote Play & capture-card video enhancer. WebGL 2 upscaling, sharpening, before/after comparison, local processing. Not NVIDIA DLSS 5 or native PS5 software.`
+`Unofficial PC-side PS5 Remote Play and capture-card video enhancer. WebGL 2 upscaling, sharpening and before/after comparison. Single HTML app, local processing, no model downloads. Experimental; not NVIDIA DLSS 5 or a PS5 installer.`
 
 ## Recommended GitHub topics
 
 Use these as repository topics when editing the GitHub **About** panel:
 
-`ps5`, `playstation-5`, `remote-play`, `ps-remote-play`, `video-upscaling`, `video-enhancement`, `image-sharpening`, `webgl2`, `glsl`, `capture-card`, `gameplay`, `browser-app`, `video-processing`, `ps5-pro`, `multimedia`
+`ps5` `playstation-5` `ps-remote-play` `remote-play` `capture-card` `video-enhancement` `video-upscaling` `video-processing` `image-sharpening` `upscaling` `webgl` `webgl2` `glsl` `javascript` `html5` `browser-app` `game-streaming` `gaming-tools` `bicubic` `real-time`
 
 ## Search intent map
 
@@ -186,3 +186,11 @@ The repository content is optimized, but GitHub's visible **About** topics are r
 ## Anti-keyword-stuffing rule
 
 Use important phrases naturally in definitions, headings, direct answers, and examples. Do not repeat long keyword lists in visible user-facing sections solely for ranking. The project's usefulness, clarity, accurate terminology, external citations, and real adoption matter more than raw keyword density.
+
+## How to assess these changes
+
+GitHub topics classify the repository in topic search; they do not guarantee visitors. See [GitHub topic guidance](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
+
+Use a useful README, clear download links, a descriptive project image, and real compatibility reports. Google recommends [helpful content written for people](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and [descriptive page titles and links](https://developers.google.com/search/docs/essentials). Google does not use [meta keywords for ranking](https://developers.google.com/search/docs/crawling-indexing/special-tags). No ranking or AI-answer inclusion has been measured for this project.
+
+Review GitHub **Insights → Traffic** regularly: record unique visitors, clones, and referring sites, with dates. Compare equal periods after a release or community demo. Share demonstrations only where relevant and permitted; this repository does not send promotional messages automatically.

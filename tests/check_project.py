@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Source integrity and loopback-server checks; not a browser or PS5 test."""
 import ast
+import hashlib
 from collections import Counter
 from html.parser import HTMLParser
 import http.client
 import importlib.util
+import json
 from pathlib import Path
 import re
 import shutil
@@ -13,6 +15,7 @@ import sys
 import tempfile
 import threading
 import unittest
+import zipfile
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,10 +62,43 @@ class ProjectTests(unittest.TestCase):
             ast.parse(path.read_text(), filename=str(path))
 
     def test_documentation_links(self):
-        for doc in ROOT.glob("*.md"):
+        for doc in ROOT.rglob("*.md"):
+            if ".git" in doc.parts or "dist" in doc.parts:
+                continue
             for target in re.findall(r"\]\(([^)]+)\)", doc.read_text()):
                 if "://" not in target and not target.startswith("#"):
                     self.assertTrue((doc.parent / target.split("#")[0]).is_file(), f"Broken local link in {doc.name}: {target}")
+
+    def test_release_archive_integrity(self):
+        if not (ROOT / ".git").exists():
+            self.skipTest("Archive creation requires a Git checkout; downloaded files can still be checked")
+        with tempfile.TemporaryDirectory() as folder:
+            target = Path(folder) / "preview.zip"
+            subprocess.run([sys.executable, str(ROOT / "scripts/build_release.py"), str(target)], check=True, capture_output=True)
+            with zipfile.ZipFile(target) as archive:
+                self.assertIsNone(archive.testzip())
+                names = set(archive.namelist())
+                for required in ["index.html", "README.md", "FAQ.md", "VALIDATION.md", "SUPPORT.md", "assets/project-banner.svg", "tests/check_project.py"]:
+                    self.assertIn(required, names)
+                manifest = json.loads(archive.read("BUILD_INFO.json"))
+                self.assertEqual(set(manifest["sha256"]), names - {"BUILD_INFO.json"})
+                for name, expected in manifest["sha256"].items():
+                    self.assertEqual(hashlib.sha256(archive.read(name)).hexdigest(), expected, name)
+                for name in names:
+                    if not name.endswith(".md"):
+                        continue
+                    for link in re.findall(r"\]\(([^)]+)\)", archive.read(name).decode()):
+                        if "://" not in link and not link.startswith("#"):
+                            resolved = (Path(name).parent / link.split("#")[0]).as_posix()
+                            self.assertIn(resolved, names, f"Missing packaged documentation: {name} -> {link}")
+
+    def test_repository_topic_format(self):
+        topics = json.loads((ROOT / "repository-metadata.json").read_text())["topics"]
+        self.assertEqual(len(topics), len(set(topics)))
+        self.assertLessEqual(len(topics), 20)
+        self.assertGreater(len(topics), 0)
+        for topic in topics:
+            self.assertRegex(topic, r"^[a-z0-9][a-z0-9-]{0,49}$")
 
     def test_server_restricts_routes_and_host(self):
         spec = importlib.util.spec_from_file_location("clarity_server", ROOT / "serve.py")

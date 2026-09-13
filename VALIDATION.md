@@ -2,6 +2,14 @@
 
 Prepared September 12, 2026. This is a source/prototype validation report, not a PS5 compatibility certification.
 
+## September 13 maintenance audit
+
+The source/launcher suite now also checks release ZIP integrity, SHA-256 file hashes, included documentation links, and GitHub topic syntax. The actual GLSL compilation and numerical checks were repeated using Mesa llvmpipe; the app shader is unchanged.
+
+The audit found that the previous ZIP list omitted several documents linked from its README and flattened directories. The release builder now includes the tracked source tree, preserves paths, and adds build provenance. Docker examples now explicitly publish the port on loopback.
+
+The README image is an explanatory project banner, not a gameplay screenshot or a measured before/after result. No new live console, capture-card, or browser compatibility claim is made.
+
 ## Completed checks
 
 | Check | Result | What it establishes |

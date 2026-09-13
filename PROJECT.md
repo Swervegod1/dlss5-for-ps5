@@ -24,7 +24,7 @@ Build and validate a lightweight external PS5 video-enhancement workflow for PC 
 | Accessibility | P1 | Active | Keyboard/focus/labels remain usable and documented |
 | Packaging | P1 | Active | Release ZIP and GHCR image remain reproducible |
 | SEO/AEO/AI discovery | P1 | Active | Accurate repository metadata, FAQ, llms.txt, citation metadata, and topic set |
-| Community reporting | P1 | Planned | Structured issue templates for bugs, compatibility reports, and ideas |
+| Community reporting | P1 | Forms available | Structured issue templates for bugs, compatibility reports, and ideas |
 | Future AI research | P2 | Research | Only after benchmarked spatial baseline and a licensed model path exist |
 
 ## Suggested GitHub Projects columns

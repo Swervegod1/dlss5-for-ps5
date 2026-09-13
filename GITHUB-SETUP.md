@@ -35,10 +35,29 @@ Adjust the explicit `git add` paths to match your changes. Do not force-push or 
 
 ## Description and topics
 
-The repository About description is:
+The reviewed About description is:
 
-> DLSS5 FOR PS5: unofficial PC-side PS5 Remote Play and capture-card video enhancer. Lightweight WebGL 2 upscaling, sharpening, before/after comparison and local processing. No model downloads. Experimental prototype; not NVIDIA DLSS 5 or native PS5 software.
+> Unofficial PC-side PS5 Remote Play and capture-card video enhancer. WebGL 2 upscaling, sharpening and before/after comparison. Single HTML app, local processing, no model downloads. Experimental; not NVIDIA DLSS 5 or a PS5 installer.
 
-The complete suggested topic list is in [repository-metadata.json](repository-metadata.json). Those suggestions do not automatically update GitHub About settings. The owner can add them through the About settings; the publishing connection exposes file writes but does not expose topic edits.
+The complete 20-topic list is in [DISCOVERY_TAGS.md](DISCOVERY_TAGS.md) and [repository-metadata.json](repository-metadata.json). These files document settings; they do not update GitHub by themselves.
 
-The project has no deployed website, release binary, or native console installer. Its HTML includes search/social metadata for any future requested web deployment. Public repository visibility does not guarantee search indexing or rankings. The owner has not yet selected an open-source license; see [LICENSE.md](LICENSE.md).
+### Apply the reviewed About settings
+
+With [GitHub CLI](https://cli.github.com/) installed and signed in to the repository owner's account, run from the project folder:
+
+```sh
+python scripts/apply_github_metadata.py
+python scripts/apply_github_metadata.py --apply
+```
+
+The first command previews the exact description and topic list. The second updates those two About fields and reads GitHub back to verify them. It uses your existing `gh` sign-in, stores no credentials, and leaves repository permissions unchanged. GitHub requires administration access for topic updates; the connected file-publishing tool does not expose this setting.
+
+Alternatively, open the repository, click the gear beside **About**, enter the description and topics, and save. GitHub allows [up to 20 topics](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics).
+
+## Release and website status
+
+The [v0.1.0 experimental release](https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0) contains downloadable browser source. It is not a native console binary. No public app website has been deployed, so do not advertise an unverified Pages URL in About. The runtime works as a local file or through the loopback launcher.
+
+The experimental release assets and container tags are rolling preview builds. `BUILD_INFO.json` in newly generated ZIPs records their exact source revision and SHA-256 file hashes. GitHub's automatically generated tag archives represent the original tag commit and can differ from updated attached assets.
+
+Public visibility does not guarantee indexing or rankings. The owner has not selected an open-source license; see [LICENSE.md](LICENSE.md).

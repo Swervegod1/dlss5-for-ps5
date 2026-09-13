@@ -1,5 +1,14 @@
 # Changelog
 
+## Preview maintenance — 2026-09-13
+
+- Added a compact README banner, check-status badge, support links, and compatibility-report entry points.
+- Unified the prepared 20 GitHub topics and added a preview/apply helper for the owner’s existing GitHub CLI sign-in.
+- Corrected Docker examples to bind the published port to loopback and documented its additional disk usage.
+- Fixed release packaging to include linked documentation, nested assets, checks and per-file SHA-256 build provenance.
+- Added archive integrity checks and source validation before publishing.
+- Clarified the untested live-PS5 status, rolling preview assets, and undeployed website status.
+
 ## 0.1.0 — 2026-09-12
 
 - Created a self-contained HTML/WebGL 2 video-filter prototype.

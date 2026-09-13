@@ -7,8 +7,8 @@
   "release_status": "experimental",
   "repository_url": "https://github.com/Swervegod1/dlss5-for-ps5",
   "release_url": "https://github.com/Swervegod1/dlss5-for-ps5/releases/tag/v0.1.0",
-  "description": "Unofficial PC-side PS5 Remote Play and capture-card video enhancer using WebGL 2 upscaling, sharpening, before/after comparison and local processing. Not NVIDIA DLSS 5, Sony PSSR, or native PS5 software.",
-  "preferred_citation_description": "DLSS5 FOR PS5 — an unofficial PC-side PS5 Remote Play and capture-card video enhancer.",
+  "description": "Unofficial PC-side PS5 Remote Play and capture-card video enhancer. WebGL 2 upscaling, sharpening and before/after comparison. Single HTML app, local processing, no model downloads. Experimental; not NVIDIA DLSS 5 or a PS5 installer.",
+  "preferred_citation_description": "DLSS5 FOR PS5 \u2014 an unofficial PC-side PS5 Remote Play and capture-card video enhancer.",
   "primary_category": "browser-based video enhancement",
   "subcategories": [
     "PS5 Remote Play video processing",
@@ -28,19 +28,24 @@
   "topics": [
     "ps5",
     "playstation-5",
-    "remote-play",
     "ps-remote-play",
-    "video-upscaling",
+    "remote-play",
+    "capture-card",
     "video-enhancement",
+    "video-upscaling",
+    "video-processing",
     "image-sharpening",
+    "upscaling",
+    "webgl",
     "webgl2",
     "glsl",
-    "capture-card",
-    "gameplay",
+    "javascript",
+    "html5",
     "browser-app",
-    "video-processing",
-    "ps5-pro",
-    "multimedia"
+    "game-streaming",
+    "gaming-tools",
+    "bicubic",
+    "real-time"
   ],
   "search_queries": [
     "PS5 Remote Play upscaler",
@@ -77,7 +82,12 @@
     "gameplay_recording": false,
     "microphone_capture": false,
     "ai_model_weights": false,
-    "output_heights": [720, 1080, 1440, 2160]
+    "output_heights": [
+      720,
+      1080,
+      1440,
+      2160
+    ]
   },
   "discovery_files": [
     "README.md",
@@ -86,7 +96,9 @@
     "codemeta.json",
     "CITATION.cff",
     "SEO.md",
-    "VALIDATION.md"
+    "VALIDATION.md",
+    "DISCOVERY_TAGS.md",
+    "SUPPORT.md"
   ],
-  "topics_status": "suggested_not_applied_via_connector"
+  "topics_status": "prepared_pending_github_about_verification"
 }
